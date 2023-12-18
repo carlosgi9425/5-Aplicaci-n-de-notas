@@ -1,0 +1,5 @@
+# Ignora el cacche de la APP
+/__pycache__
+
+#Igora la notas del usario local
+/notas
