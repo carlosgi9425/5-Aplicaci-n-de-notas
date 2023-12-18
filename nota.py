@@ -1,6 +1,8 @@
+# Importa los muls necesarios
 from conexion import *
 from datetime import date
 
+# Crea la clase nota y sus funciones
 class Nota:
     def __init__(self, id='', nombre='', contenido='') :
         self.id = id
@@ -8,6 +10,7 @@ class Nota:
         self.contenido = contenido
         self.fecha_creacion = date.today()
     
+    #Prmiete registar uanueva nota
     def registar(self):
         try:
             con = conectar()
@@ -22,6 +25,7 @@ class Nota:
         except mysql.Error as err:
             print('Ha ocurrido un error' +err)
     
+    #Crea el nuevo archivo
     def crear_archivo(self):
         try:
             file = open(f'./notas/{self.nombre}', 'w')
@@ -29,7 +33,8 @@ class Nota:
             file.close
         except OSError as err:
             print('Ha ocurrido un error'+ err)
-        
+      
+    #Muestra el contenido de las notas  
     def mostrar(self):
         datos = []
         try:
@@ -43,7 +48,7 @@ class Nota:
             print('Ha ocurrido un error' +err)
         return datos 
         
-        
+    #Busca una nota por su ID   
     def buscar(self):
        datos = []
        try:
@@ -57,6 +62,7 @@ class Nota:
            print('Ha ocurrido un error' +err)
        return datos 
    
+   #Elimina una nota por s ID
     def eliminar(self):
        try:
            con = conectar()

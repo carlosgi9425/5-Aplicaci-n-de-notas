@@ -1,3 +1,4 @@
+#Importa los módulos requeridos
 import os
 from tabulate import tabulate
 from conexion import *
@@ -5,6 +6,7 @@ from nota import *
 
 con = conectar()
 
+#Menú 
 def inciar():
     os.system('cls')
     while True:
@@ -33,7 +35,7 @@ def inciar():
            print('Escoja una opción válida')
         
         
-        
+#Permite agregar una nueva nota       
 def nueva_nota():
     nombre = input('Ingrese el nombre de la nota: ')
     contenido = input(' Escriba la nota:\n ')
@@ -41,7 +43,7 @@ def nueva_nota():
     respuesta = nota.registar()
     print(respuesta)
     
-    
+#Muestra las notas    
 def ver_notas():
     nota = Nota()
     datos = nota.mostrar()
@@ -49,7 +51,7 @@ def ver_notas():
     tabla = tabulate(datos, headers, tablefmt='fancy_grid')
     print(tabla)
     
-    
+# Muestra el contenido de las notas   
 def ver_contenido():
     id = input('Ingrese el ID de la nota: ')
     nota = Nota(id=id)    
@@ -60,7 +62,9 @@ def ver_contenido():
         file.close()
     else:
         print(' No se encontró el archivo')
-        
+ 
+ 
+# Permite módificar el contenido de las notas        # 
 def modificar_contenido():
     archivos = os.listdir('./notas')
     for numero, archivo in enumerate(archivos):
@@ -71,7 +75,8 @@ def modificar_contenido():
     file.write(nuevo_contenido)
     file.close
     print('Archivo modificado')
-    
+ 
+# Elimina una nota    
 def eliminar_nota():   
     id = input('Ingrese el ID de la nota a eliminar: ')
     nota = Nota(id=id)    
